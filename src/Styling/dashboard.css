@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+/*     
+font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+
+ */
+
+.card-title{
+    font-family: 'Montserrat', sans-serif;
+
+}
+.card-info{
+    font-family: 'Nunito Sans', sans-serif;
+
+}
+
+.yellowcircle{
+    height: 40px;
+    width: 40px;
+    background-color: #fac817;
+    border-radius: 50%;
+}
+
+.infocards{
+    box-shadow:  0px  0px 2px grey;
+    border: none;
+    border-radius: 5px;
+    width: 30rem;
+    height: auto;
+
+}
+
+.bellicon{
+    width: 1.6rem;
+}
+
+.calendaricon{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.fulldate{
+    font-family: 'Nunito Sans', sans-serif;
+
+
+}

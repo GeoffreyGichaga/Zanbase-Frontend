@@ -1,0 +1,33 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+/*     
+font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+
+ */
+
+
+
+.accordionheaders{
+    font-family: 'Montserrat', sans-serif;
+
+
+}
+
+#tboardsbtn{
+    background-color: #792d78;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Nunito Sans', sans-serif;
+
+    
+
+}
+
+
+.targetinput{
+    font-family: 'Nunito Sans', sans-serif;
+
+}

@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+/*     font-family: 'Nunito Sans', sans-serif;
+ */
+
+.signup-title{
+    font-family: 'Montserrat', sans-serif;
+
+
+}
+
+.inputlogo{
+    width: 1rem;
+}
+#firstnameinput,#emailinput,#passwordinput{
+    background-color: transparent;
+}
+.inputspace{
+    font-family: 'Nunito Sans', sans-serif;
+
+}
+
+.orgtext{
+    font-family: 'Nunito Sans', sans-serif;
+
+
+}
+
+#submitbtn,#updatebtn{
+    background-color: #792d78;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Nunito Sans', sans-serif;
+    padding: 5px 50px 5px 50px;
+
+}
+
+.logintext{
+    font-family: 'Nunito Sans', sans-serif;
+
+}
+.alink{
+    font-family: 'Nunito Sans', sans-serif;
+    color: #792d78;
+    text-decoration: none;
+}
+
+.alink:hover{
+    color: #FF4397;
+
+
+}

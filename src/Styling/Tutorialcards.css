@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+/*     
+font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+
+ */
+
+
+ .tutorial-cards{
+    width: 18rem;
+
+ }
+.tut-info{
+    font-family: 'Nunito Sans', sans-serif;
+
+
+}
+.titlet{
+    font-family: 'Montserrat', sans-serif;
+
+
+}
+
+#seecourse,#seecourse2,#seecourse3{
+    background-color: #4b214b;
+    padding: 5px 30px 5px 30px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Nunito Sans', sans-serif;
+
+}

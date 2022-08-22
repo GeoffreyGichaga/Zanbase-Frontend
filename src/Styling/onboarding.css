@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+
+
+
+
+.logo{
+    width: 4rem;
+}
+
+.navlinks
+{
+    font-family: 'Nunito Sans', sans-serif;
+    color: #792d78;
+}
+
+.onboard-title{
+    font-family: 'Montserrat', sans-serif;
+
+}
+.onboard-statement{
+    font-family: 'Nunito Sans', sans-serif;
+
+
+}
+
+.Onboardimg
+{
+    width: 29rem;
+    height: 29rem;
+}
+
+.onboarding-statement2 {
+    text-align: center;
+}
+
+#getstartbtn
+{
+    background-color: #792d78;
+    font-family: 'Nunito Sans', sans-serif;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 6px 35px 6px 35px;
+
+
+}
+
+.collabo-title{
+    font-family: 'Montserrat', sans-serif;
+
+
+
+}
+.collabo-statement{
+    font-family: 'Nunito Sans', sans-serif;
+
+
+}
+
+.pv-about-section{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,45,120,1) 23%, rgba(121,45,120,1) 100%);
+    box-shadow: 3px 2px 5px black;
+}
+
+.pv-title{
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+
+}
+.pv-statement{
+    color: white;
+    font-family: 'Nunito Sans', sans-serif;
+
+}
+
+
+.footer{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,45,120,1) 23%, rgba(121,45,120,1) 100%);
+    box-shadow: 3px 2px 5px black;
+}
