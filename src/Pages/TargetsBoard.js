@@ -30,7 +30,7 @@ const Task = () => {
             description
         }
 
-        fetch('https://zanbase-backend.herokuapp.com/targets',{
+        fetch('https://zanbase-final.herokuapp.com/targets',{
             method: "POST",
             mode: 'no-cors',
             cache: 'no-cache',

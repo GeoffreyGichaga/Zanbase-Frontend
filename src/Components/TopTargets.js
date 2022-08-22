@@ -11,7 +11,7 @@ const TopTargets = () => {
 
   useEffect(()=>{
 
-    fetch('https://zanbase-backend.herokuapp.com/targets')
+    fetch('https://zanbase-final.herokuapp.com/targets')
     .then(res => res.json())
     .then(data => setTargets(data))
 

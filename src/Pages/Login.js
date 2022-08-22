@@ -28,7 +28,7 @@ const Login = () => {
     e.preventDefault()
 
   
-    fetch("https://zanbase-backend.herokuapp.com/login",{
+    fetch("https://zanbase-final.herokuapp.com/login",{
       method: "POST",
       mode: 'no-cors',
       cache: 'no-cache',

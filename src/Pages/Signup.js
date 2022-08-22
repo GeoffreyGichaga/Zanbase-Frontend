@@ -14,7 +14,7 @@ import UserContext from '../Components/UserContext'
 import { useNavigate } from 'react-router-dom'
 
 
-
+ 
 
 
 
@@ -49,7 +49,7 @@ const Signup = () => {
 
 
 
-    fetch('https://zanbase-backend.herokuapp.com/users',{
+    fetch('https://zanbase-final.herokuapp.com/users',{
       method: 'POST',
       mode: 'no-cors',
       cache: 'no-cache',

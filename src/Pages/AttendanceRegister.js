@@ -38,7 +38,7 @@ const AttendanceRegister = () => {
                  checkedBy
              }
 
-             fetch('https://zanbase-backend.herokuapp.com/attendances',{
+             fetch('https://zanbase-final.herokuapp.com/attendances',{
                 method: "POST",
                 headers:{'Content-Type':'application/json'},
                 body: JSON.stringify(attendanceData)

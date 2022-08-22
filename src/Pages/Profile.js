@@ -34,7 +34,7 @@ const Profile = () =>
             telephone_number: telephone_number
         }
 
-        fetch("https://zanbase-backend.herokuapp.com/user_details",{
+        fetch("https://zanbase-final.herokuapp.com/user_details",{
             method: "POST",
             mode: "no-cors",
             headers:{
