@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -11,51 +11,68 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import email from '../Assets/email.png'
 import padlock from '../Assets/padlock.png'
 import { useNavigate } from 'react-router-dom'
-import UserContext from '../Components/UserContext'
+import { UserContext } from '../custom-hooks/user'
 
 const Login = () => {
   const navigate = useNavigate()
 
-  const [username,setUsername] = useState("")
+  const [userEmail,setUserEmail] = useState("")
   const [password,setPassword] = useState("")
-  const [errors,setErrors] = useState("")
+  const [errors] = useState("")
+  const {setUser} = useContext(UserContext)
 
-  const [currentUser,setCurrentUser] = useState(UserContext)
+   
 
 
   const handleSubmit = (e)=>{
 
     e.preventDefault()
 
+    // const userInfo = {
+
+    // }
+
+    // console.log({email: userEmail,password:password});
+
   
-    fetch("https://zanbase-final.herokuapp.com/login",{
+    fetch("http://127.0.0.1:3000/login",{
       method: "POST",
-      mode: 'no-cors',
-      cache: 'no-cache',
+      mode: 'cors',
       headers: 
           {
+
             'Content-Type':'application/json'
           
           },
-      body: JSON.stringify(username,password)
+      body: JSON.stringify({email: userEmail,password:password})
     })
-    .then((resJson) => resJson.json())
+    
 
-    .then((res) => {
-      if(res.status === "created"){
-        setCurrentUser(res.summary)
-        navigate('/dashboard')
-        console.log(currentUser);
-      }
-        else{
-          res.json().then( err => setErrors(Object.entries(err.error)))  
-        }
-      }
-    )
+    .then((res)=>{
+
+      if(res.ok){
+        res.json()
+        .then(resJson => {
+
+          // console.log(resJson)
+
+          setUser(resJson)
+          setUserEmail("")
+          setPassword("")
+          localStorage.setItem("jwt", resJson.jwt)
+          navigate('/dashboard')
+          
+        })
+        
+      }else{
+        alert("error login")
+    }
+
+    })
     
   }
 
-
+ 
   return (
     <>
     <Container fluid className='mt-5'>
@@ -89,8 +106,8 @@ const Login = () => {
                   aria-label="Username"
                   aria-describedby="usernameinput"
                   type='text'
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={userEmail}
+                  onChange={(e) => setUserEmail(e.target.value)}
 
                 />
               </InputGroup>

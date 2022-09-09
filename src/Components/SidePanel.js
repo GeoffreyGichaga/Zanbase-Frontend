@@ -13,6 +13,13 @@ import user3 from '../Assets/user3.png'
 import logout from '../Assets/logout.png'
 
 const SidePanel = () => {
+
+    // const handleLogout = ()=> {
+    //     fetch("http://127.0.0.1:3000/logout",{
+    //         method: "DELETE"
+    //     })
+    //     .then()
+    // }
   return (
     <>
         {/* <Row className='sidepanel'> */}
@@ -73,7 +80,7 @@ const SidePanel = () => {
 
 
                 {/* Logout Button  */}
-                <div className='d-flex mt-5'>
+                <div  className='d-flex mt-5'>
                     <img className='menu-icons' src={logout} alt='Dash'/>
                     <h4 className='menutext ms-3 mt-1'>Logout</h4>
                 </div>

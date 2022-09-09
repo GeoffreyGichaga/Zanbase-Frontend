@@ -1,4 +1,4 @@
-import React,{useRef} from 'react'
+import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import purplelogo from '../Assets/purple-logo.png'
@@ -10,8 +10,9 @@ import onboardingImg from '../Assets/onboardimg1.png'
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router-dom'
 import team from '../Assets/team.png'
-import teampic from '../Assets/teampic.png'
-import { useInView} from 'framer-motion'
+// import teampic from '../Assets/teampic.png'
+// import { useInView} from 'framer-motion'
+// import { PDFViewer } from '@react-pdf/renderer';
 
 import files from '../Assets/files.png'
 import whitelogo from '../Assets/white-logo.png'
@@ -20,28 +21,28 @@ import whitelogo from '../Assets/white-logo.png'
 const Onboarding = () => {
     const navigate = useNavigate() 
 
-    const Animations = ({children}) => {
-        const ref = useRef(null)
-        const isInView = useInView(ref, { all: true})
-      return (
-          <animate ref={ref}>
-              <span 
-                    style={{
-                        transform: isInView ? "none" : "translateX(-500px)",
-                        opacity: isInView ? 1: 0,
-                        transition: "all 0.3s cubic-bezier(0.17,0.55,0.55,1) 0.5s"
-                    }}
-                >
-                    {children}
+    // const Animations = ({children}) => {
+    //     const ref = useRef(null)
+    //     const isInView = useInView(ref, { all: true})
+    //   return (
+    //       <animate ref={ref}>
+    //           <span 
+    //                 style={{
+    //                     transform: isInView ? "none" : "translateX(-500px)",
+    //                     opacity: isInView ? 1: 0,
+    //                     transition: "all 0.3s cubic-bezier(0.17,0.55,0.55,1) 0.5s"
+    //                 }}
+    //             >
+    //                 {children}
               
             
-              </span>
+    //           </span>
     
-          </animate>
+    //       </animate>
     
         
-      )
-    }
+    //   )
+    // }
 
   return (
     <>
@@ -98,9 +99,9 @@ const Onboarding = () => {
         <Container className='mt-5'>
             <Row>
                     <Col sm={12} md={6} lg={6}>
-                        <Animations>
+                        {/* <Animations>
                             <img className='w-50' src={teampic} alt='logo3'/>
-                        </Animations>
+                        </Animations> */}
 
                     </Col>
 
@@ -153,9 +154,9 @@ const Onboarding = () => {
         <Container className='mt-5'>
             <Row>
                     <Col sm={12} md={6} lg={6}>
-                        <Animations>
+                        {/* <Animations>
                             <img className='w-50' src={teampic} alt='logo3'/>
-                        </Animations>
+                        </Animations> */}
 
                     </Col>
 
@@ -188,6 +189,14 @@ const Onboarding = () => {
                 </Row>
             </Container>
         </footer>
+
+
+        {/* <PDFViewer>
+    <MyDocument />
+  </PDFViewer> */}
+
+
+        
 
 
 

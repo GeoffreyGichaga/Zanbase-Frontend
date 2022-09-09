@@ -7,10 +7,20 @@ import Card from 'react-bootstrap/Card'
 const TargetsCard = ()=> {
 
   const [Targets,setTargets] = useState([])
+  const token = localStorage.getItem("jwt")
+
 
   useEffect(()=>{
 
-    fetch('https://zanbase-final.herokuapp.com/targets')
+    fetch('http://127.0.0.1:3000/targets',{
+      method: "GET",
+      mode:'cors',
+      headers:{
+          Authorization: `Bearer ${token}`,
+
+          'Content-Type':'application/json'
+      }
+    })
     .then(res => res.json())
     .then(data => setTargets(data))
 

@@ -8,16 +8,29 @@ import Collapse from 'react-bootstrap/Collapse';
 
 const TutorialCards = () => {
   const [open, setOpen] = useState(false);
-  const [Tutorials,setTutorials] = useState([])
-
+  const [tutorials,setTutorials] = useState([])
+  const token = localStorage.getItem("jwt")
+  
   useEffect(()=>{
-    fetch('https://zanbase-final.herokuapp.com/tutorials')
+    fetch('http://127.0.0.1:3000/tutorials',{
+      method: "GET",
+      mode:'cors',
+      headers:{
+          Authorization: `Bearer ${token}`,
+
+          'Content-Type':'application/json'
+      }
+    })
     .then(res=> res.json())
     .then(data=> setTutorials(data))
     
   },[])
 
-  const displayTutorias = Tutorials.map((tutorial)=>(
+
+  const tutorialsArray = Array.from(tutorials)
+
+
+  const displayTutorias = tutorialsArray.map((tutorial)=>(
       <Card className='mx-1'>
         <Card.Img variant="top" src={tutorial.image_url} />
         <Card.Body>

@@ -21,7 +21,9 @@ const Profile = () =>
     const [bank_code,setBankCode] = useState("")
     const [branch_code,setBranchcode] = useState("")
     const [telephone_number,setTelephoneNumber] = useState("")
+    const token = localStorage.getItem("jwt")
 
+    
     const handleSubmit = (e)=> {
         e.preventDefault()
 
@@ -34,10 +36,14 @@ const Profile = () =>
             telephone_number: telephone_number
         }
 
-        fetch("https://zanbase-final.herokuapp.com/user_details",{
+       
+
+        fetch("http://127.0.0.1:3000/user_details",{
             method: "POST",
-            mode: "no-cors",
+            mode: "cors",
             headers:{
+                Authorization: `Bearer ${token}`,
+
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(profileDetails)

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -9,7 +9,7 @@ import bellnot from '../Assets/notification.png'
 import calendar from '../Assets/calendar.png'
 import CardGroup from 'react-bootstrap/CardGroup'
 import TutorialCards from '../Components/TutorialCards'
-
+import {UserContext} from '../custom-hooks/user'
 
 
 
@@ -23,6 +23,13 @@ const Dashboard = () => {
   const date = current.getDate()
   const month = current.getMonth()
   const year = current.getFullYear()
+  const {user} = useContext(UserContext)
+  const token = localStorage.getItem("jwt")
+
+  // console.log(user.firstname,user.lastname)
+
+  const fullname = `${user.firstname} ${user.lastname}`
+
 
   const displayDay = week[day]
   const fullDate = `${date} / ${month}/ ${year}`
@@ -32,14 +39,22 @@ const Dashboard = () => {
 
   useEffect(() => {
     
-    fetch("https://zanbase-final.herokuapp.com/targets")
+    fetch("http://127.0.0.1:3000/targets",{
+      method: "GET",
+      mode:"cors",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
     .then(res => res.json())
     .then(data => setAllTargets(data))
 
   },[])
 
+  const allTargetsArray = Array.from(allTargets)
+
   
-  const displayTopTargets = allTargets.map((targs)=>(
+  const displayTopTargets = allTargetsArray.map((targs)=>(
 
         <Card id='toptargetscard1' className='p-2'>
             <Card.Body>
@@ -56,6 +71,7 @@ const Dashboard = () => {
   ))
  
 
+ 
 
 
 
@@ -84,7 +100,7 @@ const Dashboard = () => {
                     <p className='fulldate ms-3'>{fullDate}</p>
                   </Card.Text>
                 </Card.Body>
-                <Card.Footer className='text-start'>Hello! </Card.Footer>
+                <Card.Footer className='text-start'>Hello! {fullname} </Card.Footer>
               </Card>
 
               <Card className='infocards mt-5 ms-lg-3'>

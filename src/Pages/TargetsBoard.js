@@ -17,7 +17,7 @@ const Task = () => {
 
     const [title,setTitle] = useState(" ")
     const [description,setDescription] = useState(" ")
-    
+    const token = localStorage.getItem("jwt")
 
     
 
@@ -30,11 +30,14 @@ const Task = () => {
             description
         }
 
-        fetch('https://zanbase-final.herokuapp.com/targets',{
+        fetch('http://127.0.0.1:3000/targets',{
             method: "POST",
-            mode: 'no-cors',
-            cache: 'no-cache',
-            headers:{'Content-Type':'application/json'},
+            mode: 'cors',
+            headers:{
+                Authorization: `Bearer ${token}`,
+
+                'Content-Type':'application/json'
+            },
             body: JSON.stringify(data)
         })
         .then(res=> res.json())
@@ -53,7 +56,14 @@ const Task = () => {
     function refreshNewTargets(){
         
         setInterval(function(){
-            fetch('https://zanbase-backend.herokuapp.com/targets')
+            fetch('https://zanbase-backend.herokuapp.com/targets',{
+                method: "POST",
+                mode: 'cors',
+                headers:{
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type':'application/json'
+            }
+            })
             .then(res => res.json())
             .then(data => setNewTargets(data))
             .catch((error) => {

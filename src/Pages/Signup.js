@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -10,7 +10,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import user from '../Assets/user.png'
 import emailpic from '../Assets/email.png'
 import padlock from '../Assets/padlock.png'
-import UserContext from '../Components/UserContext'
+// import UserContext from '../Components/UserContext'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -32,9 +32,10 @@ const Signup = () => {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [errors, setErrors] = useState("")
-  const [currentUser, setCurrentUser] = useState(UserContext)
 
   let formSubmit = (e) => {
+
+    const token = localStorage.getItem("jwt")
 
     e.preventDefault();
     const user = {
@@ -49,24 +50,26 @@ const Signup = () => {
 
 
 
-    fetch('https://zanbase-final.herokuapp.com/users',{
+    fetch('http://127.0.0.1:3000/users',{
       method: 'POST',
-      mode: 'no-cors',
+      mode: 'cors',
       cache: 'no-cache',
       headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
         'Content-Type': 'application/json' },
       body: JSON.stringify(user)
     })
       .then((resJson) => resJson.json())
+      // .then(data => console.log(data))
 
-      .then((res) => {
-        if (res.status === 'created') {
-          setCurrentUser(res.summary)
+      .then((data) => {
+        if (data) {
+          localStorage.setItem("jwt", data.jwt)
           navigate('/dashboard')
-          console.log(currentUser);
         }
         else {
-          res.json().then(err => setErrors(Object.entries(err.error)))
+          setErrors(data.error)
         }
       }
       )
@@ -79,7 +82,7 @@ const Signup = () => {
 
 
   return (
-    <>
+    <div>
       <Container fluid className='mt-5'>
         <Row className='mt-5'>
           <Col sm={12} md={6} lg={6} className='mt-5'>
@@ -267,7 +270,7 @@ const Signup = () => {
       </Container>
 
 
-    </>
+    </div>
   )
 }
 

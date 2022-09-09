@@ -23,9 +23,7 @@ const AttendanceRegister = () => {
         const [sign,setSign] = useState('')
         const [checkedBy,setCheckedBy] = useState('')
 
-        const [submittedData,setSubmittedData] = useState([])
-
-
+        const token = localStorage.getItem("jwt")
 
         function handleSubmit(e){
             e.preventDefault()
@@ -38,49 +36,63 @@ const AttendanceRegister = () => {
                  checkedBy
              }
 
-             fetch('https://zanbase-final.herokuapp.com/attendances',{
+             fetch('http://127.0.0.1:3000/attendances',{
                 method: "POST",
-                headers:{'Content-Type':'application/json'},
+                mode:'cors',
+                headers:{
+                    Authorization: `Bearer ${token}`,
+
+                    'Content-Type':'application/json'
+                },
                 body: JSON.stringify(attendanceData)
             })
             .then(res=> res.json())
             .then(data=> console.log(data))
 
+            
 
-
-            setDate(' ')
-            setTimeIn(' ')
-            setTimeOut(' ')
-            setActivities(' ')
+            setDate('')
+            setTimeIn('')
+            setTimeOut('')
+            setActivities('')
             setSign('')
             setCheckedBy('')
-            refreshAttendance()
             
         }
+        
 
+        // replace Broadcast
 
-        function refreshAttendance(){
+        // function refreshAttendance(){
             
-            setInterval(function(){
-                fetch('https://zanbase-backend.herokuapp.com/attendances')
-                .then(res => res.json())
-                .then(resdata => setSubmittedData(resdata))
-            }, 2000)
-        }            
+        //     setInterval(function(){
+        //         fetch('https://zanbase-backend.herokuapp.com/attendances',{
+        //             method: "GET",
+        //             mode:'cors',
+        //             headers:{
+        //                 Authorization: `Bearer ${token}`,
+
+        //                 'Content-Type':'application/json'
+        //         }
+        //         })
+        //         .then(res => res.json())
+        //         .then(resdata => setSubmittedData(resdata))
+        //     }, 2000)
+        // }            
         
 
 
-        const displayNewAttendanceData = submittedData.map((sd)=>(
-            <tr>
-                <td>{sd.date}</td>
-                <td>{sd.timeIn}</td>
-                <td>{sd.timeOut}</td>
-                <td>{sd.activities}</td>
-                <td>{sd.sign}</td>
-                <td>{sd.checkedBy}</td>
-            </tr>
+        // const displayNewAttendanceData = submittedData.map((sd)=>(
+        //     <tr>
+        //         <td>{sd.date}</td>
+        //         <td>{sd.timeIn}</td>
+        //         <td>{sd.timeOut}</td>
+        //         <td>{sd.activities}</td>
+        //         <td>{sd.sign}</td>
+        //         <td>{sd.checkedBy}</td>
+        //     </tr>
 
-        ))
+        // ))
 
 
 
@@ -109,16 +121,15 @@ const AttendanceRegister = () => {
                         <p className='fulldate'>User NAME </p>
                         <p className='fulldate'>Position </p>
                         <p className='fulldate'>Email </p>
-                        <Button id='addtaskbtn'>Add Today's Activities</Button>
                     </Card.Text>
                     
                     </Card.Body>
                 </Card>
 
 
-                <Accordion className='formaccodion'>
+                <Accordion className='formaccodion mt-3'>
                 <Accordion.Item eventKey="1">
-                <Accordion.Header className='accordionheaders'>Add Targets</Accordion.Header>
+                <Accordion.Header className='accordionheaders'>Add Today's Activities</Accordion.Header>
                     <Accordion.Body>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="targetinput mb-3" controlId="formBasicEmail">
@@ -186,7 +197,7 @@ const AttendanceRegister = () => {
                         <td>G.G</td>
                         <td>Jane</td>
                     </tr>
-                    {displayNewAttendanceData}
+                    {/* {displayNewAttendanceData} */}
 
                   
                 </tbody>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Route,Routes } from 'react-router-dom';
 import {useEffect} from 'react'
 import './App.css';
@@ -15,35 +15,51 @@ import TargetsBoard from './Pages/TargetsBoard'
 import Tutorials from './Pages/Tutorials'
 import Help from './Pages/Help'
 import AttendanceRegister from './Pages/AttendanceRegister'
-import UserContext from './Components/UserContext';
+import AdminDashboard from './Pages/AdminDashboard'
+import AccountsDashboard from './Pages/AccountsDashboard'
+import { UserContext } from './custom-hooks/user'
+import { useContext } from 'react';
+
+
 
 function App() {
-  const [currentUser,setCurrentUser] = useState(null)
+
+  const {user,setUser} = useContext(UserContext)
+  const token = localStorage.getItem("jwt")
 
 
   useEffect(() => {
-    fetch("https://zanbase-backend.herokuapp.com/auth")
+    fetch("http://127.0.0.1:3000/me",{
+      method: "GET",
+      mode: "cors",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    })
     .then(res =>{
       if (res.ok){
-        res.json().then(user => setCurrentUser(user))
+        res.json().then(user => setUser(res))
       }
     })
 
-    .then(res => res.json())
-    .then(data => console.log(data))
+    // .then(res => res.json())
+    // .then(data => console.log(data))
     
   }, [])
-  // if(!currentUser) return <Login/>
+  // if(!user) return <Login onLogin={setUser}/>
+    
 
 
   return (
     <div className="App">
-      <UserContext.Provider value={{currentUser,setCurrentUser}}>
 
         <Routes>
           <Route path='/' element={<Onboarding/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<Signup/>}/>
+          <Route path='/admin' element={<AdminDashboard/>}/>
+          <Route path='/accounts' element={<AccountsDashboard/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/attendance-register' element={<AttendanceRegister/>}/>
@@ -55,7 +71,6 @@ function App() {
           <Route path='/cookies' element={<Cookies/>}/>
           <Route path='/help' element={<Help/>}/>      
         </Routes>
-    </UserContext.Provider>
 
       
     </div>
