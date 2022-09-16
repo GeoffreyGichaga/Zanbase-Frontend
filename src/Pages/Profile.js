@@ -15,6 +15,7 @@ import { useContext } from 'react'
 
 const Profile = () => {
     const {user} = useContext(UserContext)
+    console.log(user)
 
     
     const [name_on_account ,setNameOnAccount] = useState("")
@@ -32,6 +33,7 @@ const Profile = () => {
         e.preventDefault()
 
         const profileDetails = {
+            user_id: user.id,
             name_on_account: name_on_account,
             bank_name: bank_name,
             account_number:account_number,
