@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -9,6 +9,9 @@ import Accordion from 'react-bootstrap/Accordion';
 import CardGroup from 'react-bootstrap/CardGroup'
 import Form from 'react-bootstrap/Form';
 import '../Styling/TargtesBoard.css';
+import { useContext } from 'react';
+import { UserContext } from '../Components/UserContext'
+
 
 
 
@@ -18,6 +21,33 @@ const Task = () => {
     const [title,setTitle] = useState(" ")
     const [description,setDescription] = useState(" ")
     const token = localStorage.getItem("jwt")
+    const {user,setUser} = useContext(UserContext)
+
+
+    // useEffect(() => {
+
+    //     fetch('http://127.0.0.1:3000/me',{
+    //         method: "GET",
+    //         mode: "cors",
+    //         headers: {
+    //             Authorization: `Bearer ${token}`,
+    //             'Content-Type':'application/json'
+    //         }
+    //     })
+    //     .then(res =>{
+    //         if (res.ok){
+    //           res.json().then(user => setUser(user))
+    //         }
+    //     })
+      
+    
+     
+    // }, [])
+
+    // if(!user){
+    //     alert("Hello there is a user ")
+    // }
+    
 
     
 

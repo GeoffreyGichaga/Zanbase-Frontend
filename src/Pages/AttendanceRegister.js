@@ -1,4 +1,4 @@
-import React,{ useState} from 'react'
+import React,{ useState, useContext} from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -10,7 +10,7 @@ import Button  from 'react-bootstrap/Button'
 import Accordion from 'react-bootstrap/Accordion'
 import Form from 'react-bootstrap/Form'
 
-
+import { UserContext } from '../custom-hooks/user'
 
 
 
@@ -24,6 +24,10 @@ const AttendanceRegister = () => {
         const [checkedBy,setCheckedBy] = useState('')
 
         const token = localStorage.getItem("jwt")
+
+        const {user} = useContext(UserContext)
+
+
 
         function handleSubmit(e){
             e.preventDefault()

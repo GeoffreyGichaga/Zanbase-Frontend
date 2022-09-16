@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import '../Styling/SidePanel.css'
 import whitelogo from '../Assets/white-logo.png'
 import dash from '../Assets/dashboard.png'
@@ -11,15 +11,29 @@ import bell from '../Assets/bell.png'
 import checklist from '../Assets/checklist.png'
 import user3 from '../Assets/user3.png'
 import logout from '../Assets/logout.png'
-
+import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../custom-hooks/user'
 const SidePanel = () => {
 
-    // const handleLogout = ()=> {
-    //     fetch("http://127.0.0.1:3000/logout",{
-    //         method: "DELETE"
-    //     })
-    //     .then()
-    // }
+    const navigate = useNavigate()
+    const {setUser} = useContext(UserContext)
+
+    const handleLogout = ()=> {
+        const token = localStorage.getItem("jwt")
+        fetch("http://127.0.0.1:3000/logout",{
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(res => {
+            if (res.ok){
+                localStorage.removeItem("jwt",res.jwt)
+                setUser(null);
+                navigate('/')
+            }
+        })
+    }
   return (
     <>
         {/* <Row className='sidepanel'> */}
@@ -80,7 +94,7 @@ const SidePanel = () => {
 
 
                 {/* Logout Button  */}
-                <div  className='d-flex mt-5'>
+                <div onClick={handleLogout}  className='d-flex mt-5'>
                     <img className='menu-icons' src={logout} alt='Dash'/>
                     <h4 className='menutext ms-3 mt-1'>Logout</h4>
                 </div>

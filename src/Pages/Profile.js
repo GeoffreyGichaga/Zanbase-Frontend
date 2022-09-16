@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from 'react-bootstrap/Container'
 import SidePanel from '../Components/SidePanel'
 import Row from 'react-bootstrap/Row'
@@ -10,11 +10,13 @@ import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 import user from '../Assets/user.png'
+import { UserContext } from '../custom-hooks/user'
+import { useContext } from 'react'
 
+const Profile = () => {
+    const {user} = useContext(UserContext)
 
-const Profile = () => 
-{
-
+    
     const [name_on_account ,setNameOnAccount] = useState("")
     const [bank_name,setBankName] = useState("")
     const [account_number,setAccountNumber]=useState("")
@@ -22,6 +24,8 @@ const Profile = () =>
     const [branch_code,setBranchcode] = useState("")
     const [telephone_number,setTelephoneNumber] = useState("")
     const token = localStorage.getItem("jwt")
+
+   
 
     
     const handleSubmit = (e)=> {
@@ -82,9 +86,9 @@ const Profile = () =>
                 
 
                 <Card.Text className='card-info ms-4 text-start'>
-                    <p className='fulldate'>User NAME </p>
-                    <p className='fulldate'>Position </p>
-                    <p className='fulldate'>Email </p>
+                    <p className='fulldate'>firstname</p>
+                    <p className='fulldate'>role </p>
+                    <p className='fulldate'>email </p>
 
 
                 </Card.Text>

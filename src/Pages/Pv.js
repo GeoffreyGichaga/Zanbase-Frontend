@@ -4,11 +4,20 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import SidePanel from '../Components/SidePanel'
 import Card from 'react-bootstrap/Card'
+import { UserContext } from '../custom-hooks/user'
+
+import { useContext } from 'react'
+
+
+
 
 
 
 
 const Task = () => {
+
+    const {user} = useContext(UserContext)
+
   return (
     <Container fluid>
         <Row>

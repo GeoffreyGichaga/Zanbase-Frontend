@@ -27,7 +27,6 @@ function App() {
   const {user,setUser} = useContext(UserContext)
   const token = localStorage.getItem("jwt")
 
-
   useEffect(() => {
     fetch("http://127.0.0.1:3000/me",{
       method: "GET",
@@ -39,7 +38,7 @@ function App() {
     })
     .then(res =>{
       if (res.ok){
-        res.json().then(user => setUser(res))
+        res.json().then(user => setUser(user))
       }
     })
 
@@ -47,30 +46,45 @@ function App() {
     // .then(data => console.log(data))
     
   }, [])
-  // if(!user) return <Login onLogin={setUser}/>
+
+ 
+
+
+
+
+
+  // if(!user) {
+  //   return <Login/>
     
+  // } else{
+  //   return <Dashboard/>
+  // }
+    
+
+  // console.log(user)
 
 
   return (
     <div className="App">
 
         <Routes>
-          <Route path='/' element={<Onboarding/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/signup' element={<Signup/>}/>
-          <Route path='/admin' element={<AdminDashboard/>}/>
-          <Route path='/accounts' element={<AccountsDashboard/>}/>
-          <Route path='/dashboard' element={<Dashboard/>}/>
-          <Route path='/profile' element={<Profile/>}/>
-          <Route path='/attendance-register' element={<AttendanceRegister/>}/>
-          <Route path='/pv' element={<Pv/>}/>
-          <Route path='/tasks' element={<Task/>}/>
-          <Route path='/messages' element={<Messages/>}/>
-          <Route path='/targets' element={<TargetsBoard/>}/>
-          <Route path='/tutorials' element={<Tutorials/>}/>
-          <Route path='/cookies' element={<Cookies/>}/>
-          <Route path='/help' element={<Help/>}/>      
+            <Route path='/' element={<Onboarding/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/admin' element={<AdminDashboard/>}/>
+            <Route path='/accounts' element={<AccountsDashboard/>}/>
+            <Route path='/dashboard' element={<Dashboard/>}/>
+            <Route path='/profile' element={<Profile/>}/>
+            <Route path='/attendance-register' element={<AttendanceRegister/>}/>
+            <Route path='/pv' element={<Pv/>}/>
+            <Route path='/tasks' element={<Task/>}/>
+            <Route path='/messages' element={<Messages/>}/>
+            <Route path='/targets' element={<TargetsBoard/>}/>
+            <Route path='/tutorials' element={<Tutorials/>}/>
+            <Route path='/cookies' element={<Cookies/>}/>
+            <Route path='/help' element={<Help/>}/> 
+              
         </Routes>
+
 
       
     </div>

@@ -5,11 +5,16 @@ import Col from 'react-bootstrap/Col'
 import SidePanel from '../Components/SidePanel'
 import Card from 'react-bootstrap/Card'
 import Accordion from 'react-bootstrap/Accordion'
+import { UserContext } from '../custom-hooks/user'
 
-
+import { useContext } from 'react'
 
 
 const Task = () => {
+
+    const {user} = useContext(UserContext)
+    
+
   return (
     <Container fluid>
         <Row>

@@ -9,7 +9,7 @@ import bellnot from '../Assets/notification.png'
 import calendar from '../Assets/calendar.png'
 import CardGroup from 'react-bootstrap/CardGroup'
 import TutorialCards from '../Components/TutorialCards'
-import {UserContext} from '../custom-hooks/user'
+import { UserContext } from "../custom-hooks/user";
 
 
 
@@ -23,12 +23,13 @@ const Dashboard = () => {
   const date = current.getDate()
   const month = current.getMonth()
   const year = current.getFullYear()
+
   const {user} = useContext(UserContext)
   const token = localStorage.getItem("jwt")
 
-  // console.log(user.firstname,user.lastname)
+  console.log(user)
 
-  const fullname = `${user.firstname} ${user.lastname}`
+  // const fullname = `${user.firstname} ${user.lastname}`
 
 
   const displayDay = week[day]
@@ -36,6 +37,19 @@ const Dashboard = () => {
 
 
   const [allTargets,setAllTargets] = useState([])
+
+  // console.log(user)
+  console.log("Hello am a token: " , token)
+
+ 
+  
+
+
+
+
+
+
+
 
   useEffect(() => {
     
@@ -100,7 +114,7 @@ const Dashboard = () => {
                     <p className='fulldate ms-3'>{fullDate}</p>
                   </Card.Text>
                 </Card.Body>
-                <Card.Footer className='text-start'>Hello! {fullname} </Card.Footer>
+                <Card.Footer className='text-start'>Hello!  </Card.Footer>
               </Card>
 
               <Card className='infocards mt-5 ms-lg-3'>

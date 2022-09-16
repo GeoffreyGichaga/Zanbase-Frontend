@@ -13,16 +13,19 @@ import padlock from '../Assets/padlock.png'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../custom-hooks/user'
 
+
 const Login = () => {
   const navigate = useNavigate()
 
   const [userEmail,setUserEmail] = useState("")
   const [password,setPassword] = useState("")
   const [errors] = useState("")
-  const {setUser} = useContext(UserContext)
+
+  const {user,setUser} = useContext(UserContext)
+
 
    
-
+ 
 
   const handleSubmit = (e)=>{
 
@@ -59,7 +62,10 @@ const Login = () => {
           setUser(resJson)
           setUserEmail("")
           setPassword("")
+          localStorage.setItem("loggedIn", true)
           localStorage.setItem("jwt", resJson.jwt)
+
+          
           navigate('/dashboard')
           
         })
@@ -71,7 +77,7 @@ const Login = () => {
     })
     
   }
-
+//  console.log(user)
  
   return (
     <>
