@@ -11,7 +11,7 @@ import Form from 'react-bootstrap/Form';
 import '../Styling/TargtesBoard.css';
 import { useContext } from 'react';
 import { UserContext } from '../Components/UserContext'
-
+import Modal from 'react-bootstrap/Modal';
 
 
 
@@ -21,36 +21,12 @@ const Task = () => {
     const [title,setTitle] = useState(" ")
     const [description,setDescription] = useState(" ")
     const token = localStorage.getItem("jwt")
-    const {user,setUser} = useContext(UserContext)
+    const [modal,setModal]=useState(false)
 
 
-    // useEffect(() => {
 
-    //     fetch('http://127.0.0.1:3000/me',{
-    //         method: "GET",
-    //         mode: "cors",
-    //         headers: {
-    //             Authorization: `Bearer ${token}`,
-    //             'Content-Type':'application/json'
-    //         }
-    //     })
-    //     .then(res =>{
-    //         if (res.ok){
-    //           res.json().then(user => setUser(user))
-    //         }
-    //     })
-      
+   
     
-     
-    // }, [])
-
-    // if(!user){
-    //     alert("Hello there is a user ")
-    // }
-    
-
-    
-
 
     function handleSubmit(e){
         e.preventDefault()
@@ -77,31 +53,12 @@ const Task = () => {
         setTitle("")
         setDescription("")
 
-        refreshNewTargets()
           
     }
 
     const [newTargets,setNewTargets] = useState([])
 
-    function refreshNewTargets(){
-        
-        setInterval(function(){
-            fetch('https://zanbase-backend.herokuapp.com/targets',{
-                method: "POST",
-                mode: 'cors',
-                headers:{
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type':'application/json'
-            }
-            })
-            .then(res => res.json())
-            .then(data => setNewTargets(data))
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        }, 2000)
-
-    }
+    
     
 
 
@@ -116,6 +73,15 @@ const Task = () => {
       </Card>
 
     ))
+
+
+    // Add new Targets
+    const showModal = ()=>{
+        setModal(true)
+    }
+    const hideModal = ()=>{
+        setModal(false)
+    }
 
   return (
     <Container fluid>
@@ -145,11 +111,28 @@ const Task = () => {
                 </Card.Body>
             </Card>
 
-            {/* Adding new Targets */}
-            <Accordion className='formaccodion'>
-                <Accordion.Item eventKey="1">
-                <Accordion.Header className='accordionheaders'>Add Targets</Accordion.Header>
-                    <Accordion.Body>
+
+
+            {/* Adding new Targets  */}
+            <div className='d-flex justify-content-start mt-3 mb-3'>
+                <Button onClick={showModal} id='attendance-modal-btn'>New Targets</Button>
+
+            </div>
+
+            <Modal
+                    show={modal}
+                    onHide={hideModal}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    >
+                    <Modal.Header >
+                        <Modal.Title id="contained-modal-title-vcenter">
+                        Add New Targets
+                        </Modal.Title>
+                    </Modal.Header>
+
+                    <Modal.Body>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="targetinput mb-3" controlId="formBasicEmail">
                             <Form.Label>Enter Tittle</Form.Label>
@@ -173,14 +156,17 @@ const Task = () => {
                             Submit
                         </Button>
                     </Form>
+                        
+
+
+
+
+                        
+                        
+                    </Modal.Body>
+                </Modal>
+
             
-                    </Accordion.Body>
-                </Accordion.Item>
-
-
-            </Accordion>
-
-            {/* Adding new Targets */}
 
 
 

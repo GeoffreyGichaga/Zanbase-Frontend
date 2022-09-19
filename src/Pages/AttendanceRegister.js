@@ -1,4 +1,4 @@
-import React,{ useState, useContext} from 'react'
+import React,{ useState, useContext, useEffect} from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -9,6 +9,12 @@ import '../Styling/Register.css'
 import Button  from 'react-bootstrap/Button'
 import Accordion from 'react-bootstrap/Accordion'
 import Form from 'react-bootstrap/Form'
+import consumer from '../Components/consumer'
+import '../Styling/attendance.css'
+import Modal from 'react-bootstrap/Modal';
+
+
+
 
 import { UserContext } from '../custom-hooks/user'
 
@@ -22,22 +28,52 @@ const AttendanceRegister = () => {
         const [activities,setActivities] = useState('')
         const [sign,setSign] = useState('')
         const [checkedBy,setCheckedBy] = useState('')
+        const [SubmittedData,setSubmittedData] = useState([])
+        const [existingData,setExistingData] = useState([])
+        const [modal,setModal]=useState(false)
+
 
         const token = localStorage.getItem("jwt")
 
         const {user} = useContext(UserContext)
 
+    console.log(user);
+        // On page mount ,fetch and display existing attendance records
+        useEffect(() => {
+            fetch('http://127.0.0.1:3000/attendances',{
+                method: "GET",
+                mode:'cors',
+                headers:{
+                    Authorization: `Bearer ${token}`,
+
+                    'Content-Type':'application/json'
+                }
 
 
+            })
+            .then(res => res.json())
+            .then(resJson => setExistingData(resJson))
+          
+        
+          
+        }, [])
+
+        
+        
+       
+
+
+        // New attendance record submission
         function handleSubmit(e){
             e.preventDefault()
              const attendanceData = {
-                 date,
-                 timeIn,
-                 timeOut,
-                 activities,
-                 sign,
-                 checkedBy
+                 user_id: user.id,
+                 date: date,
+                 timeIn: timeIn,
+                 timeOut: timeOut,
+                 activities: activities,
+                 sign: sign,
+                 checkedBy: checkedBy
              }
 
              fetch('http://127.0.0.1:3000/attendances',{
@@ -61,42 +97,54 @@ const AttendanceRegister = () => {
             setActivities('')
             setSign('')
             setCheckedBy('')
+            setModal(false)
             
         }
+
         
 
-        // replace Broadcast
+        
+         // Attendance Broadcast
+         consumer.subscriptions.create("AttendancesChannel",{
+            connected(){
+                console.log("Connected to Attendance Channel")
+            },
+            disconnected(){
+                console.log("Disconnected to Attendance Channel")
+            },
 
-        // function refreshAttendance(){
-            
-        //     setInterval(function(){
-        //         fetch('https://zanbase-backend.herokuapp.com/attendances',{
-        //             method: "GET",
-        //             mode:'cors',
-        //             headers:{
-        //                 Authorization: `Bearer ${token}`,
+            received(data){
+                setSubmittedData(data)
+                // console.log("This was just submitted", data)
+            }
+        }) 
 
-        //                 'Content-Type':'application/json'
-        //         }
-        //         })
-        //         .then(res => res.json())
-        //         .then(resdata => setSubmittedData(resdata))
-        //     }, 2000)
-        // }            
+        // new data from Broadcast
+        const combineExistingNew = [...existingData, SubmittedData]
+       
+
+
+
+        const displayNewAttendanceData = combineExistingNew.map((data)=>(
+            <tr>
+                <td key={data.date}>{data.date}</td>
+                <td key={data.timeIn}>{data.timeIn}</td>
+                <td key={data.timeOut}>{data.timeOut}</td>
+                <td key={data.activities}>{data.activities}</td>
+                <td key={data.sign}>{data.sign}</td>
+                <td key={data.setCheckedBy}>{data.checkedBy}</td>
+            </tr>
+
+        ))
         
 
-
-        // const displayNewAttendanceData = submittedData.map((sd)=>(
-        //     <tr>
-        //         <td>{sd.date}</td>
-        //         <td>{sd.timeIn}</td>
-        //         <td>{sd.timeOut}</td>
-        //         <td>{sd.activities}</td>
-        //         <td>{sd.sign}</td>
-        //         <td>{sd.checkedBy}</td>
-        //     </tr>
-
-        // ))
+        const showModal = ()=>{
+            setModal(true)
+        }
+        const hideModal = ()=>{
+            setModal(false)
+        }
+       
 
 
 
@@ -119,22 +167,40 @@ const AttendanceRegister = () => {
                             <h1 className='name mt-lg-0'>G</h1>
                         </span>                    
 
-                    
-
-                    <Card.Text className='card-info ms-4 text-start'>
-                        <p className='fulldate'>User NAME </p>
-                        <p className='fulldate'>Position </p>
-                        <p className='fulldate'>Email </p>
-                    </Card.Text>
+                        <Card.Text className='card-info ms-4 text-start'>
+                            <p className='fulldate'>User NAME </p>
+                            <p className='fulldate'>Position </p>
+                            <p className='fulldate'>Email </p>
+                        </Card.Text>
                     
                     </Card.Body>
+                   
+
+                    
+                    
                 </Card>
 
+                {/* Display Attendance form Modal  */}
+                <div className='d-flex justify-content-start mt-3'>
+                    <Button onClick={showModal} id='attendance-modal-btn'>Add Today's Activities</Button>
 
-                <Accordion className='formaccodion mt-3'>
-                <Accordion.Item eventKey="1">
-                <Accordion.Header className='accordionheaders'>Add Today's Activities</Accordion.Header>
-                    <Accordion.Body>
+                </div>
+
+
+                <Modal
+                    show={modal}
+                    onHide={hideModal}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    >
+                    <Modal.Header >
+                        <Modal.Title id="contained-modal-title-vcenter">
+                        Attendance Register
+                        </Modal.Title>
+                    </Modal.Header>
+
+                    <Modal.Body>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="targetinput mb-3" controlId="formBasicEmail">
                             <Form.Control onChange={(e)=> setDate(e.target.value)} type="text" value={date} placeholder="Enter date" />
@@ -170,15 +236,12 @@ const AttendanceRegister = () => {
                             Submit
                         </Button>
                     </Form>
-            
-                    </Accordion.Body>
-                </Accordion.Item>
+                        
+                    </Modal.Body>
+                </Modal>
 
 
-            </Accordion>
 
-                
-            
 
 
             <Table striped bordered hover className='mt-3'>
@@ -201,7 +264,7 @@ const AttendanceRegister = () => {
                         <td>G.G</td>
                         <td>Jane</td>
                     </tr>
-                    {/* {displayNewAttendanceData} */}
+                    {displayNewAttendanceData}
 
                   
                 </tbody>

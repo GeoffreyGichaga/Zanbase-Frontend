@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+/*     
+font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+
+ */
+
+
+#attendance-modal-btn{
+    font-family: 'Nunito Sans', sans-serif;
+    border-radius: 2px;
+    background-color: #792d78;
+    border: none;
+
+    
+}
+#contained-modal-title-vcenter{
+    font-family: 'Montserrat', sans-serif;
+
+
+}

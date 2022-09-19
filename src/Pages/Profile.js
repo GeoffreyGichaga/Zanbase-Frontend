@@ -58,12 +58,12 @@ const Profile = () => {
         .then(data => console.log(data))
 
 
-        setNameOnAccount("")
-        setBankName("")
-        setAccountNumber("")
-        setBankCode("")
-        setBranchcode("")
-        setTelephoneNumber("")
+        // setNameOnAccount("")
+        // setBankName("")
+        // setAccountNumber("")
+        // setBankCode("")
+        // setBranchcode("")
+        // setTelephoneNumber("")
     }
 
    
