@@ -9,7 +9,7 @@ import { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
-import user from '../Assets/user.png'
+import userimg from '../Assets/user.png'
 import { UserContext } from '../custom-hooks/user'
 import { useContext } from 'react'
 
@@ -25,6 +25,7 @@ const Profile = () => {
     const [branch_code,setBranchcode] = useState("")
     const [telephone_number,setTelephoneNumber] = useState("")
     const token = localStorage.getItem("jwt")
+    const [id_number,setIdNumber] = useState("")
 
    
 
@@ -39,7 +40,8 @@ const Profile = () => {
             account_number:account_number,
             bank_code: bank_code,
             branch_code: branch_code,
-            telephone_number: telephone_number
+            telephone_number: telephone_number,
+            id_number: id_number
         }
 
        
@@ -58,12 +60,13 @@ const Profile = () => {
         .then(data => console.log(data))
 
 
-        // setNameOnAccount("")
-        // setBankName("")
-        // setAccountNumber("")
-        // setBankCode("")
-        // setBranchcode("")
-        // setTelephoneNumber("")
+        setNameOnAccount("")
+        setBankName("")
+        setAccountNumber("")
+        setBankCode("")
+        setBranchcode("")
+        setTelephoneNumber("")
+        setIdNumber("")
     }
 
    
@@ -104,7 +107,7 @@ const Profile = () => {
                 <Row className="mb-3 mt-5">
                     <InputGroup as={Col} className=" mb-3">
                         <InputGroup.Text  id="accnameinput">
-                            <img className='inputlogo' src={user} alt={"userimg"}/>
+                            <img className='inputlogo' src={userimg} alt={"userimg"}/>
                         </InputGroup.Text>
 
                         <Form.Control
@@ -211,6 +214,22 @@ const Profile = () => {
                         aria-describedby="Tel"
                         value={telephone_number}
                         onChange={(e)=> setTelephoneNumber(e.target.value)}
+                        />
+                        
+                    </InputGroup>
+
+                    <InputGroup as={Col} className=" mb-3">
+                        <InputGroup.Text  id="Tel">
+                            <img className='inputlogo' src={user} alt={"userimg"}/>
+                        </InputGroup.Text>
+                        
+                        <Form.Control
+                        className='inputspace'
+                        placeholder="ID Number"
+                        aria-label="id-number"
+                        aria-describedby="ID"
+                        value={id_number}
+                        onChange={(e)=> setIdNumber(e.target.value)}
                         />
                         
                     </InputGroup>

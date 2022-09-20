@@ -18,6 +18,7 @@ import { useContext } from 'react'
 const Task = () => {
 
     const {user} = useContext(UserContext)
+    console.log(user)
 
   return (
     <Container fluid>
