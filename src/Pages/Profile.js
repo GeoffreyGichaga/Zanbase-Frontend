@@ -218,13 +218,20 @@ const Profile = () => {
                         
                     </InputGroup>
 
-                    <InputGroup as={Col} className=" mb-3">
+                    
+                
+                
+
+                </Row>
+
+                <Row>
+                     <InputGroup as={Col} className=" mb-3 lg-5">
                         <InputGroup.Text  id="Tel">
                             <img className='inputlogo' src={user} alt={"userimg"}/>
                         </InputGroup.Text>
                         
                         <Form.Control
-                        className='inputspace'
+                        id='idnumber'
                         placeholder="ID Number"
                         aria-label="id-number"
                         aria-describedby="ID"
@@ -233,9 +240,6 @@ const Profile = () => {
                         />
                         
                     </InputGroup>
-                
-                
-
                 </Row>
                 
 

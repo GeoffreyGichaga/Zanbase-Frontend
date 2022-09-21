@@ -13,9 +13,6 @@ import consumer from '../Components/consumer'
 import '../Styling/attendance.css'
 import Modal from 'react-bootstrap/Modal';
 
-
-
-
 import { UserContext } from '../custom-hooks/user'
 
 
@@ -120,7 +117,7 @@ const AttendanceRegister = () => {
         }) 
 
         // new data from Broadcast
-        const combineExistingNew = [...existingData, SubmittedData]
+        const combineExistingNew = [existingData, SubmittedData]
        
 
 
