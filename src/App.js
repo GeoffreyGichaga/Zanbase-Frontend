@@ -4,7 +4,6 @@ import {useEffect} from 'react'
 import './App.css';
 import Onboarding from './Pages/onboarding';
 import Login from './Pages/Login'
-import Signup from './Pages/Signup'
 import Cookies from './Pages/cookiesinfo'
 import Dashboard from './Pages/Dashboard';
 import Profile from './Pages/Profile'
@@ -16,15 +15,15 @@ import Tutorials from './Pages/Tutorials'
 import Help from './Pages/Help'
 import AttendanceRegister from './Pages/AttendanceRegister'
 import AdminDashboard from './Pages/AdminDashboard'
-import AccountsDashboard from './Pages/AccountsDashboard'
+import AccountsDashboard from './Pages/Accounts/AccountsDashboard'
 import { UserContext } from './custom-hooks/user'
 import { useContext } from 'react';
-
+import DirectorsDashboard from './Pages/Directors/DirectorsDashboard'
 
 
 function App() {
 
-  const {user,setUser} = useContext(UserContext)
+  const {setUser} = useContext(UserContext)
   const token = localStorage.getItem("jwt")
 
   useEffect(() => {
@@ -71,7 +70,6 @@ function App() {
             <Route path='/' element={<Onboarding/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/admin' element={<AdminDashboard/>}/>
-            <Route path='/accounts' element={<AccountsDashboard/>}/>
             <Route path='/dashboard' element={<Dashboard/>}/>
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/attendance-register' element={<AttendanceRegister/>}/>
@@ -82,6 +80,10 @@ function App() {
             <Route path='/tutorials' element={<Tutorials/>}/>
             <Route path='/cookies' element={<Cookies/>}/>
             <Route path='/help' element={<Help/>}/> 
+
+            {/* Accounts & Directors Views */}
+            <Route path='/accounts' element={<AccountsDashboard/>}/>
+            <Route path='/directors' element={<DirectorsDashboard/>}/>
               
         </Routes>
 

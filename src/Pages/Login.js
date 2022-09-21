@@ -21,7 +21,7 @@ const Login = () => {
   const [password,setPassword] = useState("")
   const [errors] = useState("")
 
-  const {user,setUser} = useContext(UserContext)
+  const {setUser} = useContext(UserContext)
 
 
    
@@ -62,7 +62,6 @@ const Login = () => {
           setUser(resJson)
           setUserEmail("")
           setPassword("")
-          localStorage.setItem("loggedIn", true)
           localStorage.setItem("jwt", resJson.jwt)
 
           

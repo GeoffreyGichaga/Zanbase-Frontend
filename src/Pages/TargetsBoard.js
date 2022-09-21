@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -9,8 +9,6 @@ import Accordion from 'react-bootstrap/Accordion';
 import CardGroup from 'react-bootstrap/CardGroup'
 import Form from 'react-bootstrap/Form';
 import '../Styling/TargtesBoard.css';
-import { useContext } from 'react';
-import { UserContext } from '../Components/UserContext'
 import Modal from 'react-bootstrap/Modal';
 
 
@@ -22,6 +20,8 @@ const Task = () => {
     const [description,setDescription] = useState(" ")
     const token = localStorage.getItem("jwt")
     const [modal,setModal]=useState(false)
+    const [newTargets,setNewTargets] = useState([])
+
 
 
 
@@ -52,11 +52,11 @@ const Task = () => {
 
         setTitle("")
         setDescription("")
+        setNewTargets([])
 
           
     }
 
-    const [newTargets,setNewTargets] = useState([])
 
     
     

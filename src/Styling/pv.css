@@ -12,3 +12,13 @@ font-family: 'Nunito Sans', sans-serif;
      height: auto;
 
  } */
+
+ .acc-header{
+    color: #792d78;
+ }
+
+ #generate-btns,#generate-btns2,#generate-btns3 {
+     background-color: #792d78;
+     border-radius: 2px;
+     border: none;
+ }

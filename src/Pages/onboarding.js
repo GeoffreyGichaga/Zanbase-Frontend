@@ -56,9 +56,7 @@ const Onboarding = () => {
                     <Nav.Item>
                         <Nav.Link className='navlinks' onClick={()=>navigate('/login')}>Login</Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link className='navlinks' onClick={()=>navigate('/signup')}>Signup</Nav.Link>
-                    </Nav.Item>
+                    
                 </Nav>
             </Container>
         </Navbar>
@@ -75,7 +73,7 @@ const Onboarding = () => {
                         The solution offers auto generation of PV's ,Task Scheduling service,<br/> Targets/Goals Board and Tutorials.  
                     </p>
 
-                    <Button onClick={()=>navigate('/signup')} id='getstartbtn' className='d-flex justify-content-start mt-4'>Get Started</Button>
+                    <Button onClick={()=>navigate('/login')} id='getstartbtn' className='d-flex justify-content-start mt-4'>Get Started</Button>
                     
                     
                 </Col>

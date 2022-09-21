@@ -13,6 +13,10 @@ import user3 from '../Assets/user3.png'
 import logout from '../Assets/logout.png'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../custom-hooks/user'
+
+
+
+
 const SidePanel = () => {
 
     const navigate = useNavigate()
@@ -90,6 +94,8 @@ const SidePanel = () => {
                 </div>
 
                 <hr className='hrline mt-4'/>
+
+
 
 
 

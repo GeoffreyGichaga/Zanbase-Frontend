@@ -9,8 +9,7 @@ import Accordion from 'react-bootstrap/Accordion'
 import '../Styling/pv.css'
 import { useContext } from 'react'
 import Button from 'react-bootstrap/Button'
-import docs from '../Assets/docs.png'
-import sheets from '../Assets/sheets.png'
+
 import CardGroup from 'react-bootstrap/CardGroup'
 
 
@@ -105,8 +104,8 @@ const Pv = () => {
                     <Col className='mt-2'>
                         <Accordion  defaultActiveKey="0">
                             <Accordion.Item eventKey="0">
-                                <Accordion.Header className='accordionheaders'>
-                                    September - October
+                                <Accordion.Header  className='accordionheaders'>
+                                    <h5 className='acc-header'>September - October</h5>
                                     
                                     </Accordion.Header>
 
@@ -118,7 +117,10 @@ const Pv = () => {
                                             <Card.Text>
                                             For the period 13th September - 13th October
                                             </Card.Text>
-                                            <Button onClick={generatePaymentApprovalForm} className='ms-4'>Generate</Button>
+                                            <Button onClick={generatePaymentApprovalForm} id='generate-btns'>Preview</Button>
+
+                                            <Button onClick={generatePaymentApprovalForm} id='generate-btns' className='ms-2'>Generate</Button>
+
                                         </Card.Body>
                                     </Card>
 
@@ -128,7 +130,9 @@ const Pv = () => {
                                             <Card.Text>
                                             For the period 13th September - 13th October
                                             </Card.Text>
-                                            <Button onClick={generatePaymentRequestForm} className='ms-4'>Generate</Button>
+                                            <Button onClick={generatePaymentRequestForm} id='generate-btns2'>Preview</Button>
+
+                                            <Button onClick={generatePaymentRequestForm} id='generate-btns2' className='ms-2'>Generate</Button>
 
                                         </Card.Body>
                                     </Card>
@@ -139,7 +143,9 @@ const Pv = () => {
                                             <Card.Text>
                                             For the period 13th September - 13th October
                                             </Card.Text>
-                                            <Button onClick={generateDailyAttendanceRegister} className='ms-4'>Generate</Button>
+                                            <Button onClick={generateDailyAttendanceRegister} id='generate-btns3'>Preview</Button>
+
+                                            <Button onClick={generateDailyAttendanceRegister} id='generate-btns3' className='ms-2'>Generate</Button>
 
                                         </Card.Body>
                                     </Card>
@@ -158,7 +164,7 @@ const Pv = () => {
                         <Accordion  defaultActiveKey="0">
                             <Accordion.Item eventKey="0">
                                 <Accordion.Header className='accordionheaders'>
-                                    October - November
+                                <h5 className='acc-header'>October -  November</h5>
                                     
                                     </Accordion.Header>
                                 <Accordion.Body>
@@ -176,7 +182,7 @@ const Pv = () => {
                         <Accordion  defaultActiveKey="0">
                             <Accordion.Item eventKey="0">
                                 <Accordion.Header className='accordionheaders'>
-                                    November - December
+                                <h5 className='acc-header'>November - December</h5>
                                     
                                     </Accordion.Header>
                                 <Accordion.Body>
