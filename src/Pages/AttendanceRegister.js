@@ -117,7 +117,7 @@ const AttendanceRegister = () => {
         }) 
 
         // new data from Broadcast
-        const combineExistingNew = [existingData, SubmittedData]
+        const combineExistingNew = [...existingData, SubmittedData]
        
 
 
