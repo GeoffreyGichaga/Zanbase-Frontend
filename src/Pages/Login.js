@@ -162,9 +162,7 @@ const Login = () => {
                 Submit
               </Button>
 
-              <div className='mt-3'>
-                <p className='logintext'>Not Yet Registered? <a className='alink' href='/signup'>Signup</a></p>
-              </div>
+              
           </Form>
 
 

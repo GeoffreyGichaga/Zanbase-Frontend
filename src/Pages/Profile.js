@@ -13,6 +13,15 @@ import userimg from '../Assets/user.png'
 import { UserContext } from '../custom-hooks/user'
 import { useContext } from 'react'
 
+// icons 
+import bank from '../Assets/bankbuilding.png'
+import account from  '../Assets/calculator.png'
+import binarycode from '../Assets/binarycode.png'
+import office from '../Assets/office.png'
+import telephone from '../Assets/telephone.png'
+import number from '../Assets/number.png'
+
+
 const Profile = () => {
     const {user} = useContext(UserContext)
     console.log(user)
@@ -123,7 +132,7 @@ const Profile = () => {
 
                     <InputGroup as={Col} className=" mb-3">
                         <InputGroup.Text  id="banknameinput">
-                            <img className='inputlogo' src={user} alt={"userimg"}/>
+                            <img className='inputlogo' src={bank} alt={"userimg"}/>
                         </InputGroup.Text>
                         
                         <Form.Control
@@ -146,7 +155,7 @@ const Profile = () => {
                 <Row className="mb-3 mt-5">
                     <InputGroup as={Col} className=" mb-3">
                         <InputGroup.Text  id="AccountNo">
-                            <img className='inputlogo' src={user} alt={"userimg"}/>
+                            <img className='inputlogo' src={account} alt={"userimg"}/>
                         </InputGroup.Text>
 
                         <Form.Control
@@ -162,7 +171,7 @@ const Profile = () => {
 
                     <InputGroup as={Col} className=" mb-3">
                         <InputGroup.Text  id="BankCode">
-                            <img className='inputlogo' src={user} alt={"userimg"}/>
+                            <img className='inputlogo' src={binarycode} alt={"userimg"}/>
                         </InputGroup.Text>
                         
                         <Form.Control
@@ -188,7 +197,7 @@ const Profile = () => {
                 <Row className="mb-3 mt-5">
                     <InputGroup as={Col} className=" mb-3">
                         <InputGroup.Text  id="branchcode">
-                            <img className='inputlogo' src={user} alt={"userimg"}/>
+                            <img className='inputlogo' src={office} alt={"userimg"}/>
                         </InputGroup.Text>
 
                         <Form.Control
@@ -204,7 +213,7 @@ const Profile = () => {
 
                     <InputGroup as={Col} className=" mb-3">
                         <InputGroup.Text  id="Tel">
-                            <img className='inputlogo' src={user} alt={"userimg"}/>
+                            <img className='inputlogo' src={telephone} alt={"userimg"}/>
                         </InputGroup.Text>
                         
                         <Form.Control
@@ -227,7 +236,7 @@ const Profile = () => {
                 <Row>
                      <InputGroup as={Col} className=" mb-3 lg-5">
                         <InputGroup.Text  id="Tel">
-                            <img className='inputlogo' src={user} alt={"userimg"}/>
+                            <img className='inputlogo' src={number} alt={"userimg"}/>
                         </InputGroup.Text>
                         
                         <Form.Control
