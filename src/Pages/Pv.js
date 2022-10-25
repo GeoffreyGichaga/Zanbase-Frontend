@@ -9,12 +9,11 @@ import Accordion from 'react-bootstrap/Accordion'
 import '../Styling/pv.css'
 import { useContext } from 'react'
 import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal';
 
 import CardGroup from 'react-bootstrap/CardGroup'
 
 
- 
+ import PaymentApprovalModal from '../Components/PaymentApprovalModal'
 
 const Pv = () => {
 
@@ -26,11 +25,10 @@ const Pv = () => {
     // Payment Request Info (PRF)
     const [prfInfo,setPrfInfo] = useState([])
 
-    const [lgShow, setLgShow] = useState(false);
-    
+    const [approvalShow, setApprovalShow] = useState(false);
+    const handleClose = () => setApprovalShow(false);
+    const handleShow = () => setApprovalShow(true);
         
-    
-
 
 
 
@@ -47,6 +45,7 @@ const Pv = () => {
         .then(res => res.json())
         .then(resJson => setPrfInfo(resJson))
     }
+
 
      
 
@@ -129,152 +128,10 @@ const Pv = () => {
                                             <Card.Text>
                                             For the period 13th September - 13th October
                                             </Card.Text>
-                                            <Button onClick={() => setLgShow(true)} id='generate-btns'>Previews</Button>
-                                            {/* Form Modal  */}
-                                            <Modal
-                                                size="lg"
-                                                show={lgShow}
-                                                onHide={() => setLgShow(false)}
-                                                aria-labelledby="example-modal-sizes-title-lg"
-                                            >
-                                                <Modal.Header closeButton>
-                                                <Modal.Title id="example-modal-sizes-title-lg">
-                                                    {prfInfo.bank}
-                                                </Modal.Title>
-                                                </Modal.Header>
-                                                <Modal.Body>
-                                                <Container>
-                                                    <Row>
-                                                        <Col xs={12} md={6}>
-                                                            date : {prfInfo.prep_date}
-                                                        </Col>
-                                                        <Col xs={6} md={6}>
-                                                        org: {prfInfo.org}
-                                                        </Col>
-                                                    </Row>
+                                            <Button onClick={handleShow} id='generate-btns'>Previews</Button>
+                                          
 
-                                                    <Row>
-                                                        <Col xs={12} md={6}>
-                                                        program: {prfInfo.program}
-                                                        </Col>
-                                                        <Col xs={6} md={6}>
-                                                        function: {prfInfo.function}
-                                                        </Col>
-                                                    </Row>
-
-                                                    <p className='mt-5'>Intern Details </p>
-
-                                                    <Row>
-                                                        <Col xs={6} md={6}>
-                                                        name: {prfInfo.name}
-                                                        </Col>
-                                      
-                                                    </Row>
-
-                                                    <Row>
-                                                        <Col>
-                                                        Intern ID: {prfInfo.employee_id}
-                                                        </Col>
-
-                                                        <Col>
-                                                        Daily Stipend: 500
-                                                        
-                                                        </Col>
-                                                    </Row>
-
-                                                    <Row>
-                                                        <Col>
-                                                        Start date of the week: {prfInfo.start_day_of_the_week} 
-                                                        </Col>
-                                                        
-                                                        <Col>
-                                                        End date of the week: {prfInfo.end_date_of_the_week}
-                                                        </Col>
-                                                    </Row>
-
-
-                                                    <Row>
-                                                        <Col>
-                                                        No Of days Worked: {prfInfo.number_of_days_worked}
-                                                        </Col>
-                                                        
-                                                        <Col>
-                                                        Amount Payable: {prfInfo.amount_payable}
-                                                        </Col>
-                                                    </Row>
-
-                                                    <p className='mt-5'>Payment Details</p>
-
-                                                    <Row>
-                                                        Name on Account: {prfInfo.name_on_account}
-
-                                                    </Row>
-
-                                                    <Row>
-                                                        Bank: {prfInfo.bank}
-                                                    </Row>
-
-                                                    <Row>
-                                                        Account: {prfInfo.account}
-                                                    </Row>
-
-                                                    <Row>
-                                                        Bank Code: {prfInfo.bank_code} 
-                                                    </Row>
-
-                                                    <Row>
-                                                        Branch Code: {prfInfo.branch_code}
-                                                    </Row>
-
-                                                    <Row>
-                                                       Tel: {prfInfo.telephone} 
-                                                    </Row> 
-                                                    
-                                                    <Row className='mt-5'>
-                                                    <p>Prepared By</p>
-
-                                                        <Col>
-                                                        Name: {prfInfo.name}
-                                                        </Col>
-                                                        <Col>
-                                                        Signature: {prfInfo.user_signature_sign}
-
-                                                        </Col>
-                                                        <Col>
-                                                        Date: {prfInfo.prepared_by_date}
-                                                        </Col>
-                                                    </Row>
-
-                                                    <Row className='mt-3'>
-                                                        <p>Approved By</p>
-                                                        <Col>
-                                                        Name
-                                                        </Col>
-                                                        <Col>
-                                                        Signature
-                                                        </Col>
-                                                        <Col>
-                                                        Date
-                                                        </Col>
-                                                    </Row>
-
-                                                    <Row className='mt-3'>
-                                                    <p>Authorized By</p>
-
-                                                        <Col>
-                                                        Name
-                                                        </Col>
-                                                        <Col>
-                                                        Signature
-                                                        </Col>
-                                                        <Col>
-                                                        Date
-                                                        </Col>
-                                                    </Row>
-                                                    </Container>
-                                                </Modal.Body>
-                                            </Modal>
-                                            {/* Form Modal  */}
+                                            <PaymentApprovalModal showModal={approvalShow} prfInfo={prfInfo} hideModal={handleClose} />
 
 
                                             <Button onClick={generatePaymentApprovalForm} id='generate-btns' className='ms-2'>Generates</Button>
