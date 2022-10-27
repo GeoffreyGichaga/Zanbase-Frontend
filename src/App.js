@@ -19,6 +19,7 @@ import AccountsDashboard from './Pages/Accounts/AccountsDashboard'
 import { UserContext } from './custom-hooks/user'
 import { useContext } from 'react';
 import DirectorsDashboard from './Pages/Directors/DirectorsDashboard'
+import PDFTest from './Components/PDFTest';
 
 
 function App() {
@@ -84,6 +85,7 @@ function App() {
             {/* Accounts & Directors Views */}
             <Route path='/accounts' element={<AccountsDashboard/>}/>
             <Route path='/directors' element={<DirectorsDashboard/>}/>
+            <Route path='pdftest' element={<PDFTest/>}/>
               
         </Routes>
 

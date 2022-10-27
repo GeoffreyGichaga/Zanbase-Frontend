@@ -1,0 +1,24 @@
+.info-space{
+    border: 2px solid black;
+}
+
+.data-title{
+    font-weight: bold;
+}
+
+.payment-titles{
+    font-weight: bold;
+    border: 2px solid black;
+
+
+
+}
+
+.cells{
+    border: 1px solid black;
+    padding: 5px 65px 5px 65px;
+}
+
+.approval-cell{
+    border: 1px solid black;
+}

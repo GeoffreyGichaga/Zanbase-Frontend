@@ -12,8 +12,8 @@ import Button from 'react-bootstrap/Button'
 
 import CardGroup from 'react-bootstrap/CardGroup'
 
-
  import PaymentApprovalModal from '../Components/PaymentApprovalModal'
+import AttendanceRegisterModal from '../Components/AttendanceRegisterModal'
 
 const Pv = () => {
 
@@ -22,13 +22,56 @@ const Pv = () => {
     console.log(user)
     const token = localStorage.getItem("jwt")
 
-    // Payment Request Info (PRF)
+    // Payment Approval Form (PAF) modal
     const [prfInfo,setPrfInfo] = useState([])
 
     const [approvalShow, setApprovalShow] = useState(false);
     const handleClose = () => setApprovalShow(false);
     const handleShow = () => setApprovalShow(true);
         
+
+
+    // Payment Request Form Modal 
+    const [payemenInfo,setPaymentInfo] = useState([])
+
+    const [showPayement,setShowPayment] =  useState(false)
+    const closePaymentInfo = () => setShowPayment(false);
+    const showPaymentInfo = () => setShowPayment(true);
+
+
+
+
+
+
+
+
+
+
+    // Daily Attendance Register Modal
+
+    const [attendanceInfo,setAttendanceInfo] = useState([])
+
+    const [attendaceShow,setAttendanceShow] =  useState(false)
+    const closeAttendance = () => setAttendanceShow(false);
+    const showAttendance = () => setAttendanceShow(true);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -73,7 +116,7 @@ const Pv = () => {
             }
         })
         .then(res => res.json())
-        .then(resJson => console.log(resJson))
+        .then(resJson => setAttendanceInfo(resJson))
     }
 
 
@@ -147,6 +190,12 @@ const Pv = () => {
                                             </Card.Text>
                                             <Button onClick={generatePaymentRequestForm} id='generate-btns2'>Preview</Button>
 
+
+                                            <AttendanceRegisterModal />
+
+
+
+
                                             <Button onClick={generatePaymentRequestForm} id='generate-btns2' className='ms-2'>Generate</Button>
 
                                         </Card.Body>
@@ -159,6 +208,13 @@ const Pv = () => {
                                             For the period 13th September - 13th October
                                             </Card.Text>
                                             <Button onClick={generateDailyAttendanceRegister} id='generate-btns3'>Preview</Button>
+
+
+
+
+
+
+
 
                                             <Button onClick={generateDailyAttendanceRegister} id='generate-btns3' className='ms-2'>Generate</Button>
 
@@ -185,7 +241,7 @@ const Pv = () => {
                                 <Accordion.Body>
                                 {/* <Button onClick={generatePv} className='ms-4'>Generate</Button> */}
 
-                                    !.....
+                                                               
                                 </Accordion.Body>
                             </Accordion.Item>                
                         </Accordion>
