@@ -27,7 +27,10 @@ const Pv = () => {
 
     const [approvalShow, setApprovalShow] = useState(false);
     const handleClose = () => setApprovalShow(false);
-    const handleShow = () => setApprovalShow(true);
+    const handleShow = () => {
+        generatePaymentApprovalForm()
+        setApprovalShow(true)
+    };
         
 
 
@@ -53,7 +56,12 @@ const Pv = () => {
 
     const [attendaceShow,setAttendanceShow] =  useState(false)
     const closeAttendance = () => setAttendanceShow(false);
-    const showAttendance = () => setAttendanceShow(true);
+    const showAttendance = () => {
+
+        setAttendanceShow(true)
+        generateDailyAttendanceRegister()
+
+    };
 
 
 
@@ -191,7 +199,6 @@ const Pv = () => {
                                             <Button onClick={generatePaymentRequestForm} id='generate-btns2'>Preview</Button>
 
 
-                                            <AttendanceRegisterModal />
 
 
 
@@ -207,11 +214,12 @@ const Pv = () => {
                                             <Card.Text>
                                             For the period 13th September - 13th October
                                             </Card.Text>
-                                            <Button onClick={generateDailyAttendanceRegister} id='generate-btns3'>Preview</Button>
+                                            <Button onClick={showAttendance} id='generate-btns3'>Preview</Button>
 
 
 
 
+                                            <AttendanceRegisterModal AttendanceInfo={attendanceInfo} showModal={attendaceShow} hideModal={closeAttendance}/>
 
 
 
