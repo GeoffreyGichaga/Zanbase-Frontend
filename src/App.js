@@ -22,6 +22,9 @@ import DirectorsDashboard from './Pages/Directors/DirectorsDashboard'
 import PDFTest from './Components/PDFTest';
 
 
+import AttendancePDF from './Components/AttendancePDF';
+import AccountsPv from './Pages/Accounts/AccountsPv';
+
 function App() {
 
   const {setUser} = useContext(UserContext)
@@ -84,8 +87,17 @@ function App() {
 
             {/* Accounts & Directors Views */}
             <Route path='/accounts' element={<AccountsDashboard/>}/>
+            <Route path='/accountspv' element={<AccountsPv/>}/>
+
+
+
+
+
+
+
             <Route path='/directors' element={<DirectorsDashboard/>}/>
             <Route path='pdftest' element={<PDFTest/>}/>
+            <Route path='/attpdf' element={<AttendancePDF/>}/>
               
         </Routes>
 

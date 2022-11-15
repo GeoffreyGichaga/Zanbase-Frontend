@@ -36,22 +36,12 @@ const SideMenu = () => {
 
                 <div className='d-flex mt-5'>
                     <img className='menu-icons' src={process} alt='Dash'/>
-                    <a href='/dashboard' className='menutext ms-3 mt-1'>To be Processed</a>
+                    <a href='/accountspv' className='menutext ms-3 mt-1'>PV's</a>
                 </div>
 
 
 
-                <div className='d-flex mt-5'>
-                    <img className='menu-icons' src={timeleft} alt='Dash'/>
-                    <a href='/dashboard' className='menutext ms-3 mt-1'>To be Approved </a>
-                </div>
-
-
-
-                <div className='d-flex mt-5'>
-                    <img className='menu-icons' src={check} alt='Dash'/>
-                    <a href='/dashboard' className='menutext ms-3 mt-1'>Approved</a>
-                </div>
+                
 
                 
 

@@ -14,6 +14,7 @@ import CardGroup from 'react-bootstrap/CardGroup'
 
  import PaymentApprovalModal from '../Components/PaymentApprovalModal'
 import AttendanceRegisterModal from '../Components/AttendanceRegisterModal'
+import PaymentRequestModal from '../Components/PaymentRequestModal'
 
 const Pv = () => {
 
@@ -35,11 +36,14 @@ const Pv = () => {
 
 
     // Payment Request Form Modal 
-    const [payemenInfo,setPaymentInfo] = useState([])
+    const [payementInfo,setPaymentInfo] = useState([])
 
     const [showPayement,setShowPayment] =  useState(false)
     const closePaymentInfo = () => setShowPayment(false);
-    const showPaymentInfo = () => setShowPayment(true);
+    const showPaymentInfo = () => {
+        generatePaymentRequestForm()
+        setShowPayment(true)
+    };
 
 
 
@@ -58,8 +62,9 @@ const Pv = () => {
     const closeAttendance = () => setAttendanceShow(false);
     const showAttendance = () => {
 
-        setAttendanceShow(true)
         generateDailyAttendanceRegister()
+        setAttendanceShow(true)
+
 
     };
 
@@ -110,7 +115,7 @@ const Pv = () => {
             }
         })
         .then(res => res.json())
-        .then(resJson => console.log(resJson))
+        .then(resJson => setPaymentInfo(resJson))
     }
 
 
@@ -196,10 +201,10 @@ const Pv = () => {
                                             <Card.Text>
                                             For the period 13th September - 13th October
                                             </Card.Text>
-                                            <Button onClick={generatePaymentRequestForm} id='generate-btns2'>Preview</Button>
+                                            <Button onClick={showPaymentInfo} id='generate-btns2'>Preview</Button>
 
 
-
+                                                <PaymentRequestModal paymentRequestInfo={payementInfo} showModal={showPayement} hideModal={closePaymentInfo}/>
 
 
 
