@@ -30,13 +30,19 @@ const SideMenu = () => {
                 {/* Menu Icons */}
                 <div className='d-flex mt-5'>
                     <img className='menu-icons' src={dash} alt='Dash'/>
-                    <a href='/dashboard' className='menutext ms-3 mt-1'>Dashboard</a>
+                    <a href='/accounts' className='menutext ms-3 mt-1'>Dashboard</a>
                 </div>
 
 
+            
                 <div className='d-flex mt-5'>
                     <img className='menu-icons' src={process} alt='Dash'/>
                     <a href='/accountspv' className='menutext ms-3 mt-1'>PV's</a>
+                </div>
+
+                <div className='d-flex mt-5'>
+                    <img className='menu-icons' src={process} alt='Dash'/>
+                    <a href='/accountspv' className='menutext ms-3 mt-1'>Target's Board</a>
                 </div>
 
 
